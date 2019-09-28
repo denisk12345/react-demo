@@ -2,11 +2,14 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import TableExample from './TableExample';
+import ListVirtualized from './ListVirtualized';
 import faker from 'faker';
-import Example from './Example';
+import AutoSizerList from './AutoSizerList';
 import AutoCompleteVirtualized from './AutoCompleteVirtualized';
 import TableVirtualized from './TableVirtualized';
+import InfiniteScroll from './InfiniteScroll2';
+import InfiniteScroller from './InfiniteScroller';
+import SearchProducts from './SearchProducts';
 
 function createRecord(count) {
 	let records = [];
@@ -29,24 +32,36 @@ function App() {
 				<nav>
 					<ul>
 						<li>
-							<Link to="/">Home</Link>
+							<Link to="/">InfiniteScroll</Link>
 						</li>
 						<li>
-							<Link to="/about/">About</Link>
+							<Link to="/ListVirtualized/">ListVirtualized</Link>
 						</li>
 						<li>
-							<Link to="/users/">Users</Link>
+							<Link to="/AutoSizerList/">AutoSizerList</Link>
 						</li>
 						<li>
-							<Link to="/table/">table</Link>
+							<Link to="/AutoCompleteVirtualized/">AutoCompleteVirtualized</Link>
+						</li>
+						<li>
+							<Link to="/TableVirtualized/">TableVirtualized</Link>
+						</li>
+						<li>
+							<Link to="/InfiniteScroller/">InfiniteScroller</Link>
+						</li>
+						<li>
+							<Link to="/SearchProducts/">SearchProducts</Link>
 						</li>
 					</ul>
 				</nav>
 
-				<Route path="/" exact component={Example} />
-				<Route path="/about/" component={() => <TableExample data={records} />} />
-				<Route path="/users" component={AutoCompleteVirtualized} />
-				<Route path="/table" component={TableVirtualized} />
+				<Route path="/" exact component={InfiniteScroll} />
+				<Route path="/InfiniteScroller" exact component={InfiniteScroller} />
+				<Route path="/ListVirtualized/" component={() => <ListVirtualized data={records} />} />
+				<Route path="/AutoCompleteVirtualized" component={AutoCompleteVirtualized} />
+				<Route path="/TableVirtualized" component={TableVirtualized} />
+				<Route path="/AutoSizerList" component={AutoSizerList} />
+				<Route path="/SearchProducts" component={SearchProducts} />
 			</div>
 		</Router>
 	);

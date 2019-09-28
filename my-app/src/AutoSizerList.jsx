@@ -6,16 +6,16 @@ const rows = [];
 
 // Prefilling 50 data
 for (let i = 0; i < 1000; i++) {
-	rows.push({ name: 'foo', age: '21' });
+	rows.push({ name: 'test', age: i + '' });
 }
 
-class Example extends React.Component {
+class AutoSizerList extends React.Component {
 	constructor(props) {
 		super(props);
 		this.cache = new CellMeasurerCache({
 			// Define a CellMeasurerCache --> Put the height and width you think are the best
-			defaultHeight: 500,
-			minHeight: 500,
+			defaultHeight: 20,
+			minHeight: 10,
 			fixedWidth: true
 		});
 	}
@@ -39,7 +39,7 @@ class Example extends React.Component {
 					}}
 				>
 					<span style={{ width: 400 }}>{rows[index].name}</span>
-					<span style={{ width: 100 }}>{rows[index].age}</span>
+					<span style={{ width: 500 }}>{rows[index].age}</span>
 				</div>
 			</CellMeasurer>
 		) : null;
@@ -47,19 +47,26 @@ class Example extends React.Component {
 	render() {
 		return (
 			<AutoSizer>
-				{({ height, width }) => (
-					<List
-						width={width}
-						height={height}
-						rowGetter={({ index }) => rows[index]}
-						rowCount={1000}
-						rowHeight={400}
-						rowRenderer={this.rowRenderer}
-						headerHeight={20}
-					/>
-				)}
+				{({ height, width }) => {
+					return (
+						<div>
+							<span>
+								test-{height}-{width}
+							</span>
+							<List
+								width={width}
+								height={height}
+								rowGetter={({ index }) => rows[index]}
+								rowCount={1000}
+								rowHeight={20}
+								rowRenderer={this.rowRenderer}
+								headerHeight={20}
+							/>
+						</div>
+					);
+				}}
 			</AutoSizer>
 		);
 	}
 }
-export default Example;
+export default AutoSizerList;

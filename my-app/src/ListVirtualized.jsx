@@ -5,7 +5,7 @@ const height = 700;
 const rowHeight = 40;
 const width = 800;
 
-export default class TableExample extends React.Component {
+export default class ListVirtualized extends React.Component {
 	rowRenderer = ({ index, isScrolling, key, style }) => {
 		return (
 			<div key={key} style={style}>
